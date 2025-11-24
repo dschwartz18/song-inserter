@@ -6,11 +6,13 @@ import LoginPage from './components/LoginPage';
 import { Song, InsertionMode, Playlist, User } from './types';
 import { backendService } from './services/backendService';
 
+import ComingSoonPage from './components/ComingSoonPage';
+
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [selectedPlaylistId, setSelectedPlaylistId] = useState<string | null>(null);
-  const [mode, setMode] = useState<InsertionMode>(InsertionMode.ARTIST);
+  const [mode, setMode] = useState<InsertionMode>(InsertionMode.LIST);
   const [isDataLoading, setIsDataLoading] = useState(false);
 
   // Load playlists when user logs in
@@ -73,13 +75,17 @@ const App: React.FC = () => {
         currentMode={mode}
         onModeChange={setMode}
       />
-      <MainContent 
-        onAddSongs={handleAddSongs} 
-        mode={mode}
-        selectedPlaylist={selectedPlaylist}
-        user={user}
-        onLogout={handleLogout}
-      />
+      {mode === InsertionMode.ARTIST ? (
+        <ComingSoonPage />
+      ) : (
+        <MainContent 
+          onAddSongs={handleAddSongs} 
+          mode={mode}
+          selectedPlaylist={selectedPlaylist}
+          user={user}
+          onLogout={handleLogout}
+        />
+      )}
     </div>
   );
 };
