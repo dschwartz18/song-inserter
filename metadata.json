@@ -1,0 +1,5 @@
+{
+  "name": "Song Inserter",
+  "description": "A Spotify-inspired interface localized for Hebrew users to insert songs via Artist search or bulk list processing using Gemini AI.",
+  "requestFramePermissions": []
+}
